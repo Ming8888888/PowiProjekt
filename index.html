@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Globalisierung & Einkauf 2026</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #10b981;
+            --bg: #f3f4f6;
+            --card-bg: #ffffff;
+            --text: #1f2937;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 { margin: 0; font-weight: 600; }
+        p.subtitle { opacity: 0.9; margin-top: 0.5rem; }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        h2 {
+            font-size: 1.25rem;
+            color: #374151;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--bg);
+            padding-bottom: 0.5rem;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .quote-box {
+            background-color: #eff6ff;
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            font-style: italic;
+        }
+
+        .tag-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background: #e5e7eb;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .highlight { background: #dbeafe; color: #1e40af; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Einkaufsverhalten & Globalisierung</h1>
+    <p class="subtitle">Umfrageergebnisse vom 04.02.2026 – 10.02.2026</p>
+</header>
+
+<div class="container">
+
+    <div class="grid">
+        <div class="card" style="text-align: center;">
+            <h2>Teilnehmer</h2>
+            <div class="stat-number">ca. 110</div>
+            <p>Datensätze analysiert</p>
+        </div>
+        <div class="card" style="text-align: center;">
+            <h2>Top Priorität</h2>
+            <div class="stat-number" style="color: var(--secondary);">Preis & Qualität</div>
+            <p>Entscheidende Kaufkriterien</p>
+        </div>
+        <div class="card" style="text-align: center;">
+            <h2>Hauptproblem</h2>
+            <div class="stat-number" style="color: #ef4444;">Auswahl</div>
+            <p>Online gibt es mehr Vielfalt</p>
+        </div>
+    </div>
+
+    <div class="grid">
+        <div class="card">
+            <h2>Wo kaufst du ein?</h2>
+            <canvas id="locationChart"></canvas>
+            <p style="font-size: 0.9rem; color: #666; margin-top: 10px;">Dominanz: Fast alle nutzen große Supermärkte oder Discounter.</p>
+        </div>
+        <div class="card">
+            <h2>Was ist dir am wichtigsten?</h2>
+            <canvas id="priorityChart"></canvas>
+            <p style="font-size: 0.9rem; color: #666; margin-top: 10px;">Mehrfachnennungen möglich.</p>
+        </div>
+    </div>
+
+    <div class="grid">
+        <div class="card">
+            <h2>Warum Online statt Lokal?</h2>
+            <canvas id="onlineReasonChart"></canvas>
+        </div>
+        <div class="card">
+            <h2>Was fehlt in deiner Umgebung?</h2>
+            <div class="tag-cloud">
+                <span class="tag highlight">Drogeriemarkt (Müller/Rossmann)</span>
+                <span class="tag highlight">Kleidung/Mode</span>
+                <span class="tag">Bessere Öffis</span>
+                <span class="tag">Günstigerer Döner</span>
+                <span class="tag">Sushi/Bowls</span>
+                <span class="tag">Buchladen</span>
+                <span class="tag">Späti</span>
+                <span class="tag">Tedi/Action</span>
+                <span class="tag">Sportgeschäfte</span>
+            </div>
+            <p style="margin-top: 1rem;">Viele Befragte gaben an, dass Drogerien und Bekleidungsgeschäfte fehlen.</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>O-Töne: Was würde dich dazu bringen, lokal zu kaufen?</h2>
+        <div class="grid" style="box-shadow: none;">
+            <div class="quote-box">"Wenn Mingjie dabei wär"</div>
+            <div class="quote-box">"Günstigere Preise und mehr Angebote"</div>
+            <div class="quote-box">"Mehr Geschäfte mit mehr Auswahl (vor allem Drogeriemärkte)"</div>
+            <div class="quote-box">"Schöner gestaltet, das Wetter ist besser, alle sind netter..."</div>
+            <div class="quote-box">"Wenn es mehr Sachen die es global gäbe auch lokal gibt"</div>
+            <div class="quote-box">"Bessere Erreichbarkeit, Preissenkungen"</div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    // Daten basierend auf der Analyse der Rohdaten
+    
+    // Chart 1: Wo wird eingekauft?
+    const ctxLoc = document.getElementById('locationChart').getContext('2d');
+    new Chart(ctxLoc, {
+        type: 'doughnut',
+        data: {
+            labels: ['Supermarkt / Discounter', 'Kleiner Laden / Markt', 'Online (als Hauptort)'],
+            datasets: [{
+                data: [88, 10, 2], // Geschätzte Prozentverteilung aus den Daten
+                backgroundColor: ['#3b82f6', '#10b981', '#6366f1'],
+                borderWidth: 0
+            }]
+        },
+        options: { responsive: true, plugins: { legend: { position: 'bottom' } } }
+    });
+
+    // Chart 2: Prioritäten
+    const ctxPrio = document.getElementById('priorityChart').getContext('2d');
+    new Chart(ctxPrio, {
+        type: 'bar',
+        data: {
+            labels: ['Qualität', 'Preis', 'Nachhaltigkeit/Bio', 'Regionalität', 'Schnelligkeit'],
+            datasets: [{
+                label: 'Anzahl Nennungen (geschätzt)',
+                data: [65, 62, 35, 25, 15], // Basierend auf Häufigkeit der Kreuze
+                backgroundColor: '#2563eb',
+                borderRadius: 5
+            }]
+        },
+        options: { 
+            responsive: true, 
+            plugins: { legend: { display: false } },
+            scales: { y: { beginAtZero: true } }
+        }
+    });
+
+    // Chart 3: Grund für Online/Global
+    const ctxOnline = document.getElementById('onlineReasonChart').getContext('2d');
+    new Chart(ctxOnline, {
+        type: 'pie',
+        data: {
+            labels: ['Auswahl ist größer', 'Preis ist günstiger', 'Bequemlichkeit', 'Anderes'],
+            datasets: [{
+                data: [60, 30, 5, 5], // Analyse der Spalte "Warum entscheidest du dich..."
+                backgroundColor: ['#8b5cf6', '#ec4899', '#f59e0b', '#9ca3af'],
+                borderWidth: 0
+            }]
+        },
+        options: { responsive: true, plugins: { legend: { position: 'bottom' } } }
+    });
+</script>
+
+<div class="container">
+    <div class="card">
+        <h2>Unsere Kampagne: Global vs. Lokal</h2>
+        <p>Basierend auf euren Antworten haben wir diese Shorts produziert:</p>
+        
+        <div class="grid" style="margin-top: 1rem;">
+            <div style="background: #000; color: white; height: 400px; display: flex; align-items: center; justify-content: center; border-radius: 8px;">
+                <div>
+                    <h3>Der Preis-Check</h3>
+                    <p>Billig vs. Bewusst</p>
+                    <button style="background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Video abspielen</button>
+                </div>
+            </div>
+
+            <div style="background: #000; color: white; height: 400px; display: flex; align-items: center; justify-content: center; border-radius: 8px;">
+                <div>
+                    <h3>Geisterstadt</h3>
+                    <p>Support your Locals</p>
+                    <button style="background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Video abspielen</button>
+                </div>
+            </div>
+
+            <div style="background: #000; color: white; height: 400px; display: flex; align-items: center; justify-content: center; border-radius: 8px;">
+                <div>
+                    <h3>Reise eines Apfels</h3>
+                    <p>18.000 km vs. 20 km</p>
+                    <button style="background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Video abspielen</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

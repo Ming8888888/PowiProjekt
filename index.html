@@ -27,9 +27,13 @@
         header {
             background: linear-gradient(135deg, #1e3a8a, #3b82f6);
             color: white;
-            padding: 2rem 1rem;
+            padding: 2.5rem 1rem;
             text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
+
+        h1 { margin: 0; font-weight: 600; }
+        .subtitle { opacity: 0.9; margin-top: 0.5rem; }
 
         .container {
             max-width: 1200px;
@@ -39,7 +43,7 @@
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 1.5rem;
             margin-bottom: 2rem;
         }
@@ -48,42 +52,85 @@
             background: var(--card-bg);
             border-radius: 12px;
             padding: 1.5rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
         }
 
-        /* Video Styling */
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-align: center;
+        }
+
+        .quote-box {
+            background-color: #eff6ff;
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            font-style: italic;
+        }
+
+        .tag-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background: #e5e7eb;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .highlight { background: #dbeafe; color: #1e40af; }
+
+        /* VIDEO KARTEN STYLING */
         .video-card {
             background: #000;
-            border-radius: 12px;
+            border-radius: 15px;
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            height: 600px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            height: 550px; /* FESTE GRÖSSE FÜR DEN SHORTS-LOOK */
+            background: #000;
         }
 
         video, iframe {
             width: 100%;
-            height: 500px; 
-            object-fit: cover;
+            height: 100%;
+            object-fit: cover; /* DAS VIDEO FÜLLT DEN CONTAINER AUS OHNE IHN ZU SPRENGEN */
             border: none;
-            background: #000;
         }
 
-        .video-label {
-            padding: 1rem;
+        .video-info {
             background: #fff;
+            padding: 1.2rem;
             text-align: center;
-            font-weight: 600;
             border-top: 1px solid #eee;
         }
 
-        /* Fehler-Anzeige */
-        .error-msg {
-            color: #ef4444;
-            font-size: 0.8rem;
-            padding: 5px;
-            text-align: center;
-            background: #fee2e2;
+        .video-info h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            color: var(--text);
+        }
+
+        .video-info p {
+            margin: 5px 0 0;
+            font-size: 0.9rem;
+            color: #6b7280;
         }
     </style>
 </head>
@@ -91,53 +138,119 @@
 
 <header>
     <h1>Einkaufsverhalten & Globalisierung</h1>
-    <p>Projekt-Dashboard 2026</p>
+    <p class="subtitle">Analyse & Videokampagne 2026</p>
 </header>
 
 <div class="container">
 
-    <div class="card">
-        <h2>Unsere Kampagne: Global vs. Lokal</h2>
-        <div class="grid">
-            
-            <div class="video-card">
-                <video controls id="video1">
-                    <source src="Pow.mp4" type="video/mp4">
-                    Browser-Fehler: Video-Tag wird nicht unterstützt.
-                </video>
-                <div id="status1" class="error-msg" style="display:none;">Datei "Pow.mp4" wurde nicht gefunden!</div>
-                <div class="video-label">Der Preis-Check</div>
-            </div>
-
-            <div class="video-card">
-                <iframe 
-                    src="https://www.youtube.com/embed/TZXa_jsnrak" 
-                    allowfullscreen>
-                </iframe>
-                <div class="video-label">Geisterstadt (YouTube)</div>
-            </div>
-
-            <div class="video-card">
-                <video controls id="video2">
-                    <source src="Pow.mp4" type="video/mp4">
-                </video>
-                <div id="status2" class="error-msg" style="display:none;">Datei "Pow.mp4" wurde nicht gefunden!</div>
-                <div class="video-label">Reise eines Apfels</div>
-            </div>
-
+    <div class="grid">
+        <div class="card">
+            <h2 style="text-align:center; font-size: 1rem; color: #666;">Teilnehmer</h2>
+            <div class="stat-number">ca. 110</div>
         </div>
+        <div class="card">
+            <h2 style="text-align:center; font-size: 1rem; color: #666;">Top Priorität</h2>
+            <div class="stat-number" style="color: var(--secondary);">Preis & Qualität</div>
+        </div>
+        <div class="card">
+            <h2 style="text-align:center; font-size: 1rem; color: #666;">Hauptproblem</h2>
+            <div class="stat-number" style="color: #ef4444;">Auswahl</div>
+        </div>
+    </div>
+
+    <div class="grid">
+        <div class="card">
+            <h2>Wo kaufst du ein?</h2>
+            <canvas id="locationChart"></canvas>
+        </div>
+        <div class="card">
+            <h2>Was ist dir am wichtigsten?</h2>
+            <canvas id="priorityChart"></canvas>
+        </div>
+    </div>
+
+    <div class="card" style="margin-bottom: 2rem;">
+        <h2>Was würde dich dazu bringen, lokal zu kaufen?</h2>
+        <div class="quote-box">"Günstigere Preise und mehr Angebote"</div>
+        <div class="quote-box">"Mehr Geschäfte mit mehr Auswahl (vor allem Drogeriemärkte)"</div>
+        <div class="quote-box">"Wenn es mehr Sachen, die es global gäbe, auch lokal gibt"</div>
+    </div>
+
+    <h2 style="margin-bottom: 1.5rem; padding-left: 0.5rem;">Unsere Kampagne: Global vs. Lokal</h2>
+    <div class="grid">
+        
+        <div class="video-card">
+            <div class="video-wrapper">
+                <video controls>
+                    <source src="Pow.mp4" type="video/mp4">
+                    Browser unterstützt Video nicht.
+                </video>
+            </div>
+            <div class="video-info">
+                <h3>Der Preis-Check</h3>
+                <p>Billig vs. Bewusst</p>
+            </div>
+        </div>
+
+        <div class="video-card">
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/TZXa_jsnrak" allowfullscreen></iframe>
+            </div>
+            <div class="video-info">
+                <h3>Geisterstadt</h3>
+                <p>Support your Locals</p>
+            </div>
+        </div>
+
+        <div class="video-card">
+            <div class="video-wrapper">
+                <video controls>
+                    <source src="Pow.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="video-info">
+                <h3>Reise eines Apfels</h3>
+                <p>18.000 km vs. 20 km</p>
+            </div>
+        </div>
+
     </div>
 </div>
 
 <script>
-    // Kleiner Test, ob die Dateien geladen werden können
-    function checkVideo(videoElem, statusElem) {
-        videoElem.onerror = function() {
-            document.getElementById(statusElem).style.display = "block";
-        };
-    }
-    checkVideo(document.getElementById('video1'), 'status1');
-    checkVideo(document.getElementById('video2'), 'status2');
+    // Chart 1: Wo wird eingekauft?
+    const ctxLoc = document.getElementById('locationChart').getContext('2d');
+    new Chart(ctxLoc, {
+        type: 'doughnut',
+        data: {
+            labels: ['Supermarkt', 'Markt', 'Online'],
+            datasets: [{
+                data: [88, 10, 2],
+                backgroundColor: ['#3b82f6', '#10b981', '#6366f1'],
+                borderWidth: 0
+            }]
+        },
+        options: { responsive: true, plugins: { legend: { position: 'bottom' } } }
+    });
+
+    // Chart 2: Prioritäten
+    const ctxPrio = document.getElementById('priorityChart').getContext('2d');
+    new Chart(ctxPrio, {
+        type: 'bar',
+        data: {
+            labels: ['Qualität', 'Preis', 'Bio', 'Regional'],
+            datasets: [{
+                label: 'Nennungen',
+                data: [65, 62, 35, 25],
+                backgroundColor: '#2563eb',
+                borderRadius: 5
+            }]
+        },
+        options: { 
+            responsive: true, 
+            plugins: { legend: { display: false } }
+        }
+    });
 </script>
 
 </body>

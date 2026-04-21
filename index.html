@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -70,22 +71,6 @@
             font-style: italic;
         }
 
-        .tag-cloud {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .tag {
-            background: #e5e7eb;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-        }
-
-        .highlight { background: #dbeafe; color: #1e40af; }
-
-        /* VIDEO KARTEN STYLING */
         .video-card {
             background: #000;
             border-radius: 15px;
@@ -103,14 +88,13 @@
         .video-wrapper {
             position: relative;
             width: 100%;
-            height: 550px; /* FESTE GRÖSSE FÜR DEN SHORTS-LOOK */
+            height: 550px;
             background: #000;
         }
 
-        video, iframe {
+        iframe {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* DAS VIDEO FÜLLT DEN CONTAINER AUS OHNE IHN ZU SPRENGEN */
             border: none;
         }
 
@@ -177,43 +161,47 @@
     </div>
 
     <h2 style="margin-bottom: 1.5rem; padding-left: 0.5rem;">Unsere Kampagne: Global vs. Lokal</h2>
+
     <div class="grid">
-        
+
+        <!-- Video 1 -->
         <div class="video-card">
             <div class="video-wrapper">
-               <iframe src="https://youtube.com/shorts/Oti3WusubRw?si=vIuS_sUzPwRzx-cG" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/Oti3WusubRw" allowfullscreen></iframe>
             </div>
             <div class="video-info">
-                <h3>2</h3>
-                <p>2</p>
+                <h3>Video 1</h3>
+                <p>YouTube Shorts</p>
             </div>
         </div>
 
+        <!-- Video 2 -->
         <div class="video-card">
             <div class="video-wrapper">
-                <iframe src="https://youtube.com/shorts/QhRhLwbZlF8?si=sjl3jR0MtFrhDpci" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/QhRhLwbZlF8" allowfullscreen></iframe>
             </div>
             <div class="video-info">
-                <h3>1</h3>
-                <p>1</p>
+                <h3>Video 2</h3>
+                <p>YouTube Shorts</p>
             </div>
         </div>
 
+        <!-- Video 3 -->
         <div class="video-card">
             <div class="video-wrapper">
-                <iframe src="https://youtu.be/zGAJVnTvhW4?si=WZgOast7Cj2F6XMv" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/zGAJVnTvhW4" allowfullscreen></iframe>
             </div>
             <div class="video-info">
-                <h3>3</h3>
-                <p>3</p>
+                <h3>Video 3</h3>
+                <p>YouTube Video</p>
             </div>
         </div>
 
     </div>
+
 </div>
 
 <script>
-    // Chart 1: Wo wird eingekauft?
     const ctxLoc = document.getElementById('locationChart').getContext('2d');
     new Chart(ctxLoc, {
         type: 'doughnut',
@@ -228,25 +216,21 @@
         options: { responsive: true, plugins: { legend: { position: 'bottom' } } }
     });
 
-    // Chart 2: Prioritäten
     const ctxPrio = document.getElementById('priorityChart').getContext('2d');
     new Chart(ctxPrio, {
         type: 'bar',
         data: {
             labels: ['Qualität', 'Preis', 'Bio', 'Regional'],
             datasets: [{
-                label: 'Nennungen',
                 data: [65, 62, 35, 25],
                 backgroundColor: '#2563eb',
                 borderRadius: 5
             }]
         },
-        options: { 
-            responsive: true, 
-            plugins: { legend: { display: false } }
-        }
+        options: { responsive: true, plugins: { legend: { display: false } } }
     });
 </script>
 
 </body>
 </html>
+```

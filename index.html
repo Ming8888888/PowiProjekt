@@ -46,7 +46,6 @@
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 1.5rem;
             margin-bottom: 2rem;
-            align-items: start;
         }
 
         .card {
@@ -71,7 +70,6 @@
             font-style: italic;
         }
 
-        /* --- VIDEO STYLING --- */
         .video-card {
             background: #fff;
             border-radius: 15px;
@@ -86,19 +84,12 @@
             transform: translateY(-5px);
         }
 
-        /* Standard für Video 1 (16:9) */
         .video-wrapper {
             position: relative;
             width: 100%;
-            aspect-ratio: 16 / 9;
-            background: #000;
-        }
-
-        /* Spezial-Klasse für Shorts (Video 2 & 3 - 9:16) */
-        .video-wrapper.is-short {
+            /* Optimiert für Shorts im Hochformat */
             aspect-ratio: 9 / 16;
-            max-width: 320px;
-            margin: 0 auto;
+            background: #000;
         }
 
         iframe {
@@ -120,6 +111,12 @@
             margin: 0;
             font-size: 1.1rem;
             color: var(--text);
+        }
+
+        .video-info p {
+            margin: 5px 0 0;
+            font-size: 0.9rem;
+            color: #6b7280;
         }
     </style>
 </head>
@@ -174,28 +171,28 @@
                 <iframe src="https://www.youtube.com/embed/Oti3WusubRw" allowfullscreen></iframe>
             </div>
             <div class="video-info">
-                <h3>Video 1: Analyse</h3>
-                <p><a href="https://youtube.com/watch?v=Oti3WusubRw" target="_blank">Auf YouTube öffnen</a></p>
+                <h3>Video 1</h3>
+                <p><a href="https://youtube.com/shorts/Oti3WusubRw" target="_blank">In YouTube öffnen</a></p>
             </div>
         </div>
 
         <div class="video-card">
-            <div class="video-wrapper is-short">
+            <div class="video-wrapper">
                 <iframe src="https://www.youtube.com/embed/QhRhLwbZlF8" allowfullscreen></iframe>
             </div>
             <div class="video-info">
-                <h3>Video 2: Trends</h3>
-                <p><a href="https://youtube.com/shorts/QhRhLwbZlF8" target="_blank">Auf YouTube öffnen</a></p>
+                <h3>Video 2</h3>
+                <p><a href="https://youtube.com/shorts/QhRhLwbZlF8" target="_blank">In YouTube öffnen</a></p>
             </div>
         </div>
 
         <div class="video-card">
-            <div class="video-wrapper is-short">
+            <div class="video-wrapper">
                 <iframe src="https://www.youtube.com/embed/zGAJVnTvhW4" allowfullscreen></iframe>
             </div>
             <div class="video-info">
-                <h3>Video 3: Lokal</h3>
-                <p><a href="https://youtu.be/zGAJVnTvhW4" target="_blank">Auf YouTube öffnen</a></p>
+                <h3>Video 3</h3>
+                <p><a href="https://youtu.be/zGAJVnTvhW4" target="_blank">In YouTube öffnen</a></p>
             </div>
         </div>
 
@@ -204,7 +201,6 @@
 </div>
 
 <script>
-    // Chart: Wo kaufst du ein?
     const ctxLoc = document.getElementById('locationChart').getContext('2d');
     new Chart(ctxLoc, {
         type: 'doughnut',
@@ -219,7 +215,6 @@
         options: { responsive: true, plugins: { legend: { position: 'bottom' } } }
     });
 
-    // Chart: Was ist dir wichtig?
     const ctxPrio = document.getElementById('priorityChart').getContext('2d');
     new Chart(ctxPrio, {
         type: 'bar',

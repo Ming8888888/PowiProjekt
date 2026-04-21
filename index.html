@@ -46,6 +46,7 @@
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1.5rem;
             margin-bottom: 2rem;
+            align-items: start;
         }
 
         .card {
@@ -72,6 +73,7 @@
             font-size: 2.5rem;
             font-weight: 700;
             color: var(--primary);
+            text-align: center;
         }
 
         .quote-box {
@@ -96,6 +98,41 @@
         }
 
         .highlight { background: #dbeafe; color: #1e40af; }
+
+        /* --- VIDEO STYLING --- */
+        .video-card {
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9; /* Standard für normales Video */
+            background: #000;
+        }
+
+        .video-wrapper.is-short {
+            aspect-ratio: 9 / 16; /* Hochformat für Shorts */
+            max-width: 320px;
+            margin: 0 auto;
+        }
+
+        iframe {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            border: none;
+        }
+
+        .video-info {
+            padding: 1.2rem;
+            text-align: center;
+            border-top: 1px solid #eee;
+        }
     </style>
 </head>
 <body>
@@ -129,62 +166,67 @@
         <div class="card">
             <h2>Wo kaufst du ein?</h2>
             <canvas id="locationChart"></canvas>
-            <p style="font-size: 0.9rem; color: #666; margin-top: 10px;">Dominanz: Fast alle nutzen große Supermärkte oder Discounter.</p>
         </div>
         <div class="card">
             <h2>Was ist dir am wichtigsten?</h2>
             <canvas id="priorityChart"></canvas>
-            <p style="font-size: 0.9rem; color: #666; margin-top: 10px;">Mehrfachnennungen möglich.</p>
-        </div>
-    </div>
-
-    <div class="grid">
-        <div class="card">
-            <h2>Warum Online statt Lokal?</h2>
-            <canvas id="onlineReasonChart"></canvas>
-        </div>
-        <div class="card">
-            <h2>Was fehlt in deiner Umgebung?</h2>
-            <div class="tag-cloud">
-                <span class="tag highlight">Drogeriemarkt (Müller/Rossmann)</span>
-                <span class="tag highlight">Kleidung/Mode</span>
-                <span class="tag">Bessere Öffis</span>
-                <span class="tag">Günstigerer Döner</span>
-                <span class="tag">Sushi/Bowls</span>
-                <span class="tag">Buchladen</span>
-                <span class="tag">Späti</span>
-                <span class="tag">Tedi/Action</span>
-                <span class="tag">Sportgeschäfte</span>
-            </div>
-            <p style="margin-top: 1rem;">Viele Befragte gaben an, dass Drogerien und Bekleidungsgeschäfte fehlen.</p>
         </div>
     </div>
 
     <div class="card">
         <h2>O-Töne: Was würde dich dazu bringen, lokal zu kaufen?</h2>
-        <div class="grid" style="box-shadow: none;">
-            <div class="quote-box">"Wenn Mingjie dabei wär"</div>
+        <div class="grid" style="box-shadow: none; margin-bottom: 0;">
             <div class="quote-box">"Günstigere Preise und mehr Angebote"</div>
-            <div class="quote-box">"Mehr Geschäfte mit mehr Auswahl (vor allem Drogeriemärkte)"</div>
-            <div class="quote-box">"Schöner gestaltet, das Wetter ist besser, alle sind netter..."</div>
+            <div class="quote-box">"Mehr Geschäfte mit mehr Auswahl"</div>
             <div class="quote-box">"Wenn es mehr Sachen die es global gäbe auch lokal gibt"</div>
-            <div class="quote-box">"Bessere Erreichbarkeit, Preissenkungen"</div>
+        </div>
+    </div>
+
+    <h2 style="margin-top: 3rem; margin-bottom: 1.5rem;">Unsere Kampagne: Global vs. Lokal</h2>
+    
+    <div class="grid">
+        <div class="video-card">
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/Oti3WusubRw" allowfullscreen></iframe>
+            </div>
+            <div class="video-info">
+                <h3>Der Preis-Check</h3>
+                <p>Billig vs. Bewusst</p>
+            </div>
+        </div>
+
+        <div class="video-card">
+            <div class="video-wrapper is-short">
+                <iframe src="https://www.youtube.com/embed/QhRhLwbZlF8" allowfullscreen></iframe>
+            </div>
+            <div class="video-info">
+                <h3>Geisterstadt</h3>
+                <p>Support your Locals</p>
+            </div>
+        </div>
+
+        <div class="video-card">
+            <div class="video-wrapper is-short">
+                <iframe src="https://www.youtube.com/embed/zGAJVnTvhW4" allowfullscreen></iframe>
+            </div>
+            <div class="video-info">
+                <h3>Reise eines Apfels</h3>
+                <p>18.000 km vs. 20 km</p>
+            </div>
         </div>
     </div>
 
 </div>
 
 <script>
-    // Daten basierend auf der Analyse der Rohdaten
-    
     // Chart 1: Wo wird eingekauft?
     const ctxLoc = document.getElementById('locationChart').getContext('2d');
     new Chart(ctxLoc, {
         type: 'doughnut',
         data: {
-            labels: ['Supermarkt / Discounter', 'Kleiner Laden / Markt', 'Online (als Hauptort)'],
+            labels: ['Supermarkt / Discounter', 'Kleiner Laden / Markt', 'Online'],
             datasets: [{
-                data: [88, 10, 2], // Geschätzte Prozentverteilung aus den Daten
+                data: [88, 10, 2],
                 backgroundColor: ['#3b82f6', '#10b981', '#6366f1'],
                 borderWidth: 0
             }]
@@ -197,70 +239,16 @@
     new Chart(ctxPrio, {
         type: 'bar',
         data: {
-            labels: ['Qualität', 'Preis', 'Nachhaltigkeit/Bio', 'Regionalität', 'Schnelligkeit'],
+            labels: ['Qualität', 'Preis', 'Bio', 'Regionalität', 'Schnelligkeit'],
             datasets: [{
-                label: 'Anzahl Nennungen (geschätzt)',
-                data: [65, 62, 35, 25, 15], // Basierend auf Häufigkeit der Kreuze
+                data: [65, 62, 35, 25, 15],
                 backgroundColor: '#2563eb',
                 borderRadius: 5
             }]
         },
-        options: { 
-            responsive: true, 
-            plugins: { legend: { display: false } },
-            scales: { y: { beginAtZero: true } }
-        }
-    });
-
-    // Chart 3: Grund für Online/Global
-    const ctxOnline = document.getElementById('onlineReasonChart').getContext('2d');
-    new Chart(ctxOnline, {
-        type: 'pie',
-        data: {
-            labels: ['Auswahl ist größer', 'Preis ist günstiger', 'Bequemlichkeit', 'Anderes'],
-            datasets: [{
-                data: [60, 30, 5, 5], // Analyse der Spalte "Warum entscheidest du dich..."
-                backgroundColor: ['#8b5cf6', '#ec4899', '#f59e0b', '#9ca3af'],
-                borderWidth: 0
-            }]
-        },
-        options: { responsive: true, plugins: { legend: { position: 'bottom' } } }
+        options: { responsive: true, plugins: { legend: { display: false } } }
     });
 </script>
-
-<div class="container">
-    <div class="card">
-        <h2>Unsere Kampagne: Global vs. Lokal</h2>
-        <p>Basierend auf euren Antworten haben wir diese Shorts produziert:</p>
-        
-        <div class="grid" style="margin-top: 1rem;">
-            <div style="background: #000; color: white; height: 400px; display: flex; align-items: center; justify-content: center; border-radius: 8px;">
-                <div>
-                    <h3>Der Preis-Check</h3>
-                    <p>Billig vs. Bewusst</p>
-                    <button style="background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Video abspielen</button>
-                </div>
-            </div>
-
-            <div style="background: #000; color: white; height: 400px; display: flex; align-items: center; justify-content: center; border-radius: 8px;">
-                <div>
-                    <h3>Geisterstadt</h3>
-                    <p>Support your Locals</p>
-                    <button style="background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Video abspielen</button>
-                </div>
-            </div>
-
-            <div style="background: #000; color: white; height: 400px; display: flex; align-items: center; justify-content: center; border-radius: 8px;">
-                <div>
-                    <h3>Reise eines Apfels</h3>
-                    <p>18.000 km vs. 20 km</p>
-                    <button style="background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Video abspielen</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 
 </body>
 </html>

@@ -21,6 +21,7 @@
             color: var(--text);
             margin: 0;
             padding: 0;
+            line-height: 1.6;
         }
 
         header {
@@ -28,7 +29,11 @@
             color: white;
             padding: 2.5rem 1rem;
             text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
+
+        h1 { margin: 0; font-weight: 600; }
+        .subtitle { opacity: 0.9; margin-top: 0.5rem; }
 
         .container {
             max-width: 1200px;
@@ -41,7 +46,7 @@
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 1.5rem;
             margin-bottom: 2rem;
-            align-items: start; /* Wichtig, damit Boxen nicht unterschiedlich lang gezogen werden */
+            align-items: start;
         }
 
         .card {
@@ -51,38 +56,70 @@
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
         }
 
-        /* Video Styling */
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-align: center;
+        }
+
+        .quote-box {
+            background-color: #eff6ff;
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            font-style: italic;
+        }
+
+        /* --- VIDEO STYLING --- */
         .video-card {
             background: #fff;
             border-radius: 15px;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
         }
 
+        .video-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Standard für Video 1 (16:9) */
         .video-wrapper {
             position: relative;
             width: 100%;
+            aspect-ratio: 16 / 9;
             background: #000;
-            aspect-ratio: 16 / 9; /* Standard für normales Video 1 */
         }
 
-        /* Spezial-Klasse für Shorts (Video 2 & 3) */
+        /* Spezial-Klasse für Shorts (Video 2 & 3 - 9:16) */
         .video-wrapper.is-short {
-            aspect-ratio: 9 / 16; 
-            max-width: 320px; /* Shorts nicht zu breit machen */
+            aspect-ratio: 9 / 16;
+            max-width: 320px;
             margin: 0 auto;
         }
 
         iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             border: none;
         }
 
         .video-info {
-            padding: 1rem;
+            padding: 1.2rem;
             text-align: center;
             border-top: 1px solid #eee;
+        }
+
+        .video-info h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            color: var(--text);
         }
     </style>
 </head>
@@ -90,11 +127,45 @@
 
 <header>
     <h1>Einkaufsverhalten & Globalisierung</h1>
-    <p>Analyse & Videokampagne 2026</p>
+    <p class="subtitle">Analyse & Videokampagne 2026</p>
 </header>
 
 <div class="container">
-    <h2 style="margin-bottom: 1.5rem;">Unsere Kampagne: Global vs. Lokal</h2>
+
+    <div class="grid">
+        <div class="card">
+            <h2 style="text-align:center; font-size: 1rem; color: #666;">Teilnehmer</h2>
+            <div class="stat-number">ca. 110</div>
+        </div>
+        <div class="card">
+            <h2 style="text-align:center; font-size: 1rem; color: #666;">Top Priorität</h2>
+            <div class="stat-number" style="color: var(--secondary);">Preis & Qualität</div>
+        </div>
+        <div class="card">
+            <h2 style="text-align:center; font-size: 1rem; color: #666;">Hauptproblem</h2>
+            <div class="stat-number" style="color: #ef4444;">Auswahl</div>
+        </div>
+    </div>
+
+    <div class="grid">
+        <div class="card">
+            <h2>Wo kaufst du ein?</h2>
+            <canvas id="locationChart"></canvas>
+        </div>
+        <div class="card">
+            <h2>Was ist dir am wichtigsten?</h2>
+            <canvas id="priorityChart"></canvas>
+        </div>
+    </div>
+
+    <div class="card" style="margin-bottom: 2rem;">
+        <h2>Was würde dich dazu bringen, lokal zu kaufen?</h2>
+        <div class="quote-box">"Günstigere Preise und mehr Angebote"</div>
+        <div class="quote-box">"Mehr Geschäfte mit mehr Auswahl (vor allem Drogeriemärkte)"</div>
+        <div class="quote-box">"Wenn es mehr Sachen, die es global gäbe, auch lokal gibt"</div>
+    </div>
+
+    <h2 style="margin-bottom: 1.5rem; padding-left: 0.5rem;">Unsere Kampagne: Global vs. Lokal</h2>
 
     <div class="grid">
 
@@ -103,8 +174,8 @@
                 <iframe src="https://www.youtube.com/embed/Oti3WusubRw" allowfullscreen></iframe>
             </div>
             <div class="video-info">
-                <h3>Video 1 (Normal)</h3>
-                <p>Analyse der Globalisierung</p>
+                <h3>Video 1: Analyse</h3>
+                <p><a href="https://youtube.com/watch?v=Oti3WusubRw" target="_blank">Auf YouTube öffnen</a></p>
             </div>
         </div>
 
@@ -113,8 +184,8 @@
                 <iframe src="https://www.youtube.com/embed/QhRhLwbZlF8" allowfullscreen></iframe>
             </div>
             <div class="video-info">
-                <h3>Video 2 (Short)</h3>
-                <p>Einkaufstrends</p>
+                <h3>Video 2: Trends</h3>
+                <p><a href="https://youtube.com/shorts/QhRhLwbZlF8" target="_blank">Auf YouTube öffnen</a></p>
             </div>
         </div>
 
@@ -123,13 +194,46 @@
                 <iframe src="https://www.youtube.com/embed/zGAJVnTvhW4" allowfullscreen></iframe>
             </div>
             <div class="video-info">
-                <h3>Video 3 (Short)</h3>
-                <p>Lokale Angebote</p>
+                <h3>Video 3: Lokal</h3>
+                <p><a href="https://youtu.be/zGAJVnTvhW4" target="_blank">Auf YouTube öffnen</a></p>
             </div>
         </div>
 
     </div>
+
 </div>
+
+<script>
+    // Chart: Wo kaufst du ein?
+    const ctxLoc = document.getElementById('locationChart').getContext('2d');
+    new Chart(ctxLoc, {
+        type: 'doughnut',
+        data: {
+            labels: ['Supermarkt', 'Markt', 'Online'],
+            datasets: [{
+                data: [88, 10, 2],
+                backgroundColor: ['#3b82f6', '#10b981', '#6366f1'],
+                borderWidth: 0
+            }]
+        },
+        options: { responsive: true, plugins: { legend: { position: 'bottom' } } }
+    });
+
+    // Chart: Was ist dir wichtig?
+    const ctxPrio = document.getElementById('priorityChart').getContext('2d');
+    new Chart(ctxPrio, {
+        type: 'bar',
+        data: {
+            labels: ['Qualität', 'Preis', 'Bio', 'Regional'],
+            datasets: [{
+                data: [65, 62, 35, 25],
+                backgroundColor: '#2563eb',
+                borderRadius: 5
+            }]
+        },
+        options: { responsive: true, plugins: { legend: { display: false } } }
+    });
+</script>
 
 </body>
 </html>

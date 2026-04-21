@@ -7,7 +7,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        :root {
+      :root {
             --primary: #2563eb;
             --secondary: #10b981;
             --bg: #f3f4f6;
@@ -27,13 +27,13 @@
         header {
             background: linear-gradient(135deg, #1e3a8a, #3b82f6);
             color: white;
-            padding: 2rem 1rem;
+            padding: 2.5rem 1rem;
             text-align: center;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
 
         h1 { margin: 0; font-weight: 600; }
-        p.subtitle { opacity: 0.9; margin-top: 0.5rem; }
+        .subtitle { opacity: 0.9; margin-top: 0.5rem; }
 
         .container {
             max-width: 1200px;
@@ -46,6 +46,7 @@
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1.5rem;
             margin-bottom: 2rem;
+            align-items: start;
         }
 
         .card {
@@ -56,14 +57,10 @@
             transition: transform 0.2s;
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-        }
-
         h2 {
-            font-size: 1.25rem;
+            font-size: 1.5rem;
             color: #374151;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             border-bottom: 2px solid var(--bg);
             padding-bottom: 0.5rem;
         }
@@ -72,6 +69,7 @@
             font-size: 2.5rem;
             font-weight: 700;
             color: var(--primary);
+            text-align: center;
         }
 
         .quote-box {
@@ -94,6 +92,78 @@
             border-radius: 20px;
             font-size: 0.9rem;
         }
+
+        .highlight { background: #dbeafe; color: #1e40af; }
+
+        /* --- GROSSE VIDEO SEKTION --- */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .video-card {
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            background: #000;
+        }
+
+        /* Video 1: 16:9 Querformat */
+        .ratio-16-9 {
+            aspect-ratio: 16 / 9;
+        }
+
+        /* Video 2 & 3: 9:16 Hochformat */
+        .ratio-9-16 {
+            aspect-ratio: 9 / 16;
+            max-height: 650px; /* Begrenzung für Desktop */
+            margin: 0 auto;
+        }
+
+        iframe {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            border: none;
+        }
+
+        .video-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .video-info h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+
+        .video-info p {
+            color: #6b7280;
+            margin: 0.5rem 0;
+        }
+
+        .video-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
 
         .highlight { background: #dbeafe; color: #1e40af; }
     </style>

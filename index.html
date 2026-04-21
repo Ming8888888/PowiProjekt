@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -72,7 +71,7 @@
         }
 
         .video-card {
-            background: #000;
+            background: #fff;
             border-radius: 15px;
             overflow: hidden;
             display: flex;
@@ -88,18 +87,21 @@
         .video-wrapper {
             position: relative;
             width: 100%;
-            height: 550px;
+            /* Optimiert für Shorts im Hochformat */
+            aspect-ratio: 9 / 16;
             background: #000;
         }
 
         iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             border: none;
         }
 
         .video-info {
-            background: #fff;
             padding: 1.2rem;
             text-align: center;
             border-top: 1px solid #eee;
@@ -162,42 +164,39 @@
 
     <h2 style="margin-bottom: 1.5rem; padding-left: 0.5rem;">Unsere Kampagne: Global vs. Lokal</h2>
 
-  <div class="grid">
+    <div class="grid">
 
-    <!-- Video 1 -->
-    <div class="video-card">
-        <div class="video-wrapper">
-            <iframe src="https://www.youtube.com/embed/Oti3WusubRw" allowfullscreen></iframe>
+        <div class="video-card">
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/Oti3WusubRw" allowfullscreen></iframe>
+            </div>
+            <div class="video-info">
+                <h3>Video 1</h3>
+                <p><a href="https://youtube.com/shorts/Oti3WusubRw" target="_blank">In YouTube öffnen</a></p>
+            </div>
         </div>
-        <div class="video-info">
-            <h3>Video 1</h3>
-            <p><a href="https://youtube.com/shorts/Oti3WusubRw" target="_blank">Falls es nicht lädt → hier öffnen</a></p>
+
+        <div class="video-card">
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/QhRhLwbZlF8" allowfullscreen></iframe>
+            </div>
+            <div class="video-info">
+                <h3>Video 2</h3>
+                <p><a href="https://youtube.com/shorts/QhRhLwbZlF8" target="_blank">In YouTube öffnen</a></p>
+            </div>
         </div>
+
+        <div class="video-card">
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/zGAJVnTvhW4" allowfullscreen></iframe>
+            </div>
+            <div class="video-info">
+                <h3>Video 3</h3>
+                <p><a href="https://youtu.be/zGAJVnTvhW4" target="_blank">In YouTube öffnen</a></p>
+            </div>
+        </div>
+
     </div>
-
-    <!-- Video 2 -->
-    <div class="video-card">
-        <div class="video-wrapper">
-            <iframe src="https://www.youtube.com/embed/QhRhLwbZlF8" allowfullscreen></iframe>
-        </div>
-        <div class="video-info">
-            <h3>Video 2</h3>
-            <p><a href="https://youtube.com/shorts/QhRhLwbZlF8" target="_blank">Falls es nicht lädt → hier öffnen</a></p>
-        </div>
-    </div>
-
-    <!-- Video 3 -->
-    <div class="video-card">
-        <div class="video-wrapper">
-            <iframe src="https://www.youtube.com/embed/zGAJVnTvhW4" allowfullscreen></iframe>
-        </div>
-        <div class="video-info">
-            <h3>Video 3</h3>
-            <p><a href="https://youtu.be/zGAJVnTvhW4" target="_blank">Falls es nicht lädt → hier öffnen</a></p>
-        </div>
-    </div>
-
-</div>
 
 </div>
 
@@ -233,4 +232,3 @@
 
 </body>
 </html>
-```

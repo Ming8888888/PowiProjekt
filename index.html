@@ -55,12 +55,7 @@
             border-radius: 16px;
             padding: 1.8rem;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
         }
 
         h2 {
@@ -71,34 +66,13 @@
             padding-bottom: 0.5rem;
         }
 
-        /* Statistik-Zahlen */
-        .stat-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2.5rem;
-        }
-
-        .stat-card {
-            text-align: center;
-            padding: 2rem;
-        }
-
         .stat-number {
             font-size: 3rem;
             font-weight: 800;
             color: var(--primary);
-            line-height: 1;
-            margin-bottom: 0.5rem;
+            text-align: center;
         }
 
-        .stat-desc {
-            font-size: 1rem;
-            color: #6b7280;
-            font-weight: 400;
-        }
-
-        /* O-Töne & Tags */
         .quote-box {
             background-color: #eff6ff;
             border-left: 5px solid var(--primary);
@@ -112,7 +86,6 @@
             display: flex;
             flex-wrap: wrap;
             gap: 0.6rem;
-            margin-bottom: 1rem;
         }
 
         .tag {
@@ -120,27 +93,22 @@
             padding: 0.4rem 1rem;
             border-radius: 25px;
             font-size: 0.9rem;
-            color: #4b5563;
         }
 
-        .tag.highlight {
-            background: #dbeafe;
-            color: #1e40af;
-            font-weight: 600;
-        }
+        .tag.highlight { background: #dbeafe; color: #1e40af; font-weight: 600; }
 
-        /* --- VIDEO SEKTION --- */
+        /* --- EINHEITLICHE VIDEO SEKTION --- */
         .section-title {
             text-align: center;
             margin: 4rem 0 2rem;
             font-size: 2rem;
-            color: #111827;
         }
 
         .video-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            align-items: stretch; /* Wichtig für gleiche Kartenhöhe */
         }
 
         .video-card {
@@ -150,20 +118,15 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             display: flex;
             flex-direction: column;
+            height: 100%;
         }
 
         .video-wrapper {
             position: relative;
             width: 100%;
-            background: #000;
-        }
-
-        /* Video Formate */
-        .ratio-16-9 { aspect-ratio: 16 / 9; }
-        .ratio-9-16 { 
+            /* Erzwingt das Hochformat für ALLE Videos (9:16) */
             aspect-ratio: 9 / 16; 
-            max-height: 600px;
-            margin: 0 auto;
+            background: #000;
         }
 
         iframe {
@@ -175,33 +138,23 @@
         .video-info {
             padding: 1.5rem;
             text-align: center;
+            flex-grow: 1; /* Füllt den Raum aus, damit Buttons auf einer Linie sind */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
-        .video-info h3 {
-            margin: 0;
-            font-size: 1.25rem;
-            color: var(--primary);
-        }
-
-        .video-info p {
-            color: #6b7280;
-            margin: 0.5rem 0 1.2rem;
-        }
+        .video-info h3 { margin: 0; color: var(--primary); font-size: 1.25rem; }
+        .video-info p { color: #6b7280; margin: 0.5rem 0 1rem; }
 
         .video-link {
             display: inline-block;
-            padding: 0.6rem 1.2rem;
-            background: var(--bg);
+            padding: 0.6rem;
             color: var(--primary);
             text-decoration: none;
             font-weight: 600;
-            border-radius: 10px;
-            font-size: 0.9rem;
-            transition: background 0.2s;
-        }
-
-        .video-link:hover {
-            background: #e0e7ff;
+            border-top: 1px solid #f3f4f6;
+            width: 100%;
         }
 
     </style>
@@ -210,103 +163,94 @@
 
 <header>
     <h1>Einkaufsverhalten & Globalisierung</h1>
-    <p class="subtitle">Umfrageergebnisse & Videokampagne 2026</p>
+    <p class="subtitle">Analyse & Videokampagne 2026</p>
 </header>
 
 <div class="container">
 
-    <div class="stat-grid">
-        <div class="card stat-card">
+    <div class="grid">
+        <div class="card">
+            <h2 style="text-align:center;">Teilnehmer</h2>
             <div class="stat-number">110</div>
-            <div class="stat-desc">Teilnehmer analysiert</div>
         </div>
-        <div class="card stat-card">
+        <div class="card">
+            <h2 style="text-align:center;">Top Priorität</h2>
             <div class="stat-number" style="color: var(--secondary);">Preis</div>
-            <div class="stat-desc">Wichtigstes Kriterium</div>
         </div>
-        <div class="card stat-card">
+        <div class="card">
+            <h2 style="text-align:center;">Problem</h2>
             <div class="stat-number" style="color: var(--accent-red);">Auswahl</div>
-            <div class="stat-desc">Größtes lokales Defizit</div>
         </div>
     </div>
 
     <div class="grid">
         <div class="card">
-            <h2>Einkaufsorte</h2>
+            <h2>Wo kaufst du ein?</h2>
             <canvas id="locationChart"></canvas>
-            <p style="font-size: 0.85rem; color: #666; margin-top: 15px; text-align: center;">
-                Große Supermärkte dominieren den Alltag gegenüber Online-Lebensmittelkauf.
-            </p>
         </div>
         <div class="card">
-            <h2>Kauf-Prioritäten</h2>
+            <h2>Was ist dir am wichtigsten?</h2>
             <canvas id="priorityChart"></canvas>
-            <p style="font-size: 0.85rem; color: #666; margin-top: 15px; text-align: center;">
-                Qualität und Preis liegen fast gleichauf an der Spitze.
-            </p>
         </div>
     </div>
 
     <div class="grid">
         <div class="card">
-            <h2>Was fehlt in der Umgebung?</h2>
+            <h2>Was fehlt lokal?</h2>
             <div class="tag-cloud">
-                <span class="tag highlight">Drogeriemarkt (Müller/Rossmann)</span>
-                <span class="tag highlight">Kleidung & Mode</span>
-                <span class="tag">Bessere Öffis</span>
-                <span class="tag">Sushi & Bowls</span>
-                <span class="tag">Sportgeschäfte</span>
-                <span class="tag">Buchladen</span>
-                <span class="tag">Tedi / Action</span>
+                <span class="tag highlight">Drogerie</span>
+                <span class="tag highlight">Mode</span>
+                <span class="tag">Öffis</span>
+                <span class="tag">Sushi</span>
+                <span class="tag">Sport</span>
             </div>
-            <p>Besonders Drogerien und Bekleidungsgeschäfte werden schmerzlich vermisst.</p>
         </div>
         <div class="card">
-            <h2>Warum Online statt Lokal?</h2>
-            <canvas id="onlineReasonChart"></canvas>
+            <h2>Stimmen</h2>
+            <div class="quote-box">"Mehr Auswahl wie im Internet"</div>
+            <div class="quote-box">"Günstigere Preise lokal"</div>
         </div>
     </div>
 
-    <div class="card" style="margin-bottom: 3rem;">
-        <h2>Stimmen aus der Community</h2>
-        <div class="quote-box">"Wenn es mehr Sachen, die es global gäbe, auch lokal gäbe."</div>
-        <div class="quote-box">"Günstigere Preise und mehr Auswahl (vor allem Drogeriemärkte)."</div>
-        <div class="quote-box">"Schöner gestaltet, bessere Erreichbarkeit, Preissenkungen."</div>
-    </div>
-
-    <h2 class="section-title">Unsere Kampagne: Global vs. Lokal</h2>
+    <h2 class="section-title">Unsere Kampagne</h2>
     
     <div class="video-grid">
         <div class="video-card">
-            <div class="video-wrapper ratio-16-9">
+            <div class="video-wrapper">
                 <iframe src="https://www.youtube.com/embed/Oti3WusubRw" allowfullscreen></iframe>
             </div>
             <div class="video-info">
-                <h3>Die Analyse</h3>
-                <p>Der Preis-Check: Warum wir global kaufen.</p>
-                <a href="https://youtube.com/watch?v=Oti3WusubRw" target="_blank" class="video-link">Video auf YouTube öffnen →</a>
+                <div>
+                    <h3>Video 1: Analyse</h3>
+                    <p>Warum wir global kaufen.</p>
+                </div>
+                <a href="https://youtube.com/watch?v=Oti3WusubRw" target="_blank" class="video-link">Auf YouTube öffnen →</a>
             </div>
         </div>
 
         <div class="video-card">
-            <div class="video-wrapper ratio-9-16">
+            <div class="video-wrapper">
                 <iframe src="https://www.youtube.com/embed/QhRhLwbZlF8" allowfullscreen></iframe>
             </div>
             <div class="video-info">
-                <h3>Lokal-Check</h3>
-                <p>Geisterstadt oder Erlebniseinkauf?</p>
-                <a href="https://youtube.com/shorts/QhRhLwbZlF8" target="_blank" class="video-link">Short ansehen →</a>
+                <div>
+                    <h3>Video 2: Trends</h3>
+                    <p>Geisterstadt oder Lokal-Support?</p>
+                </div>
+                <a href="https://youtube.com/shorts/QhRhLwbZlF8" target="_blank" class="video-link">Auf YouTube öffnen →</a>
             </div>
         </div>
 
         <div class="video-card">
-            <div class="video-wrapper ratio-9-16">
+            <div class="video-wrapper">
                 <iframe src="https://www.youtube.com/embed/zGAJVnTvhW4" allowfullscreen></iframe>
             </div>
             <div class="video-info">
-                <h3>Der Weg der Ware</h3>
-                <p>Regionalität vs. Globale Vielfalt.</p>
-                <a href="https://youtu.be/zGAJVnTvhW4" target="_blank" class="video-link">Short ansehen →</a>
+                <div>
+                    <h3>Video 3: Lokal</h3>
+                    <p>Die Reise der Produkte.</p>
+                </div>
+                <a href="https://youtu.be/zGAJVnTvhW4" target="_blank" class="video-link">Auf YouTube öffnen →</a>
             </div>
         </div>
     </div>
@@ -314,59 +258,32 @@
 </div>
 
 <script>
-    // Konfiguration für Chart.js
-    const chartOptions = {
-        responsive: true,
-        plugins: {
-            legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } }
-        }
-    };
-
-    // Chart 1: Wo wird eingekauft?
-    new Chart(document.getElementById('locationChart'), {
+    // Charts Initialisierung
+    const ctxLoc = document.getElementById('locationChart').getContext('2d');
+    new Chart(ctxLoc, {
         type: 'doughnut',
         data: {
-            labels: ['Supermarkt/Discounter', 'Markt/Laden', 'Online'],
+            labels: ['Supermarkt', 'Markt', 'Online'],
             datasets: [{
                 data: [88, 10, 2],
-                backgroundColor: ['#3b82f6', '#10b981', '#6366f1'],
-                borderWidth: 0
+                backgroundColor: ['#3b82f6', '#10b981', '#6366f1']
             }]
         },
-        options: chartOptions
+        options: { plugins: { legend: { position: 'bottom' } } }
     });
 
-    // Chart 2: Prioritäten
-    new Chart(document.getElementById('priorityChart'), {
+    const ctxPrio = document.getElementById('priorityChart').getContext('2d');
+    new Chart(ctxPrio, {
         type: 'bar',
         data: {
-            labels: ['Qualität', 'Preis', 'Bio', 'Regional', 'Tempo'],
+            labels: ['Qualität', 'Preis', 'Bio', 'Regional'],
             datasets: [{
                 label: 'Nennungen',
-                data: [65, 62, 35, 25, 15],
-                backgroundColor: '#2563eb',
-                borderRadius: 6
+                data: [65, 62, 35, 25],
+                backgroundColor: '#2563eb'
             }]
         },
-        options: {
-            ...chartOptions,
-            plugins: { legend: { display: false } },
-            scales: { y: { beginAtZero: true } }
-        }
-    });
-
-    // Chart 3: Warum Online?
-    new Chart(document.getElementById('onlineReasonChart'), {
-        type: 'pie',
-        data: {
-            labels: ['Größere Auswahl', 'Besserer Preis', 'Bequemlichkeit', 'Sonstiges'],
-            datasets: [{
-                data: [60, 30, 5, 5],
-                backgroundColor: ['#8b5cf6', '#ec4899', '#f59e0b', '#9ca3af'],
-                borderWidth: 0
-            }]
-        },
-        options: chartOptions
+        options: { plugins: { legend: { display: false } } }
     });
 </script>
 

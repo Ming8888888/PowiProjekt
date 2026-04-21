@@ -27,13 +27,13 @@
         header {
             background: linear-gradient(135deg, #1e3a8a, #3b82f6);
             color: white;
-            padding: 2.5rem 1rem;
+            padding: 2rem 1rem;
             text-align: center;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
 
         h1 { margin: 0; font-weight: 600; }
-        .subtitle { opacity: 0.9; margin-top: 0.5rem; }
+        p.subtitle { opacity: 0.9; margin-top: 0.5rem; }
 
         .container {
             max-width: 1200px;
@@ -46,7 +46,6 @@
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1.5rem;
             margin-bottom: 2rem;
-            align-items: start;
         }
 
         .card {
@@ -57,10 +56,14 @@
             transition: transform 0.2s;
         }
 
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
         h2 {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             color: #374151;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             border-bottom: 2px solid var(--bg);
             padding-bottom: 0.5rem;
         }
@@ -69,7 +72,6 @@
             font-size: 2.5rem;
             font-weight: 700;
             color: var(--primary);
-            text-align: center;
         }
 
         .quote-box {
@@ -94,100 +96,32 @@
         }
 
         .highlight { background: #dbeafe; color: #1e40af; }
-
-        /* --- GROSSE VIDEO SEKTION --- */
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            margin-top: 1rem;
-        }
-
-        .video-card {
-            background: #fff;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.3s ease;
-        }
-
-        .video-card:hover {
-            transform: translateY(-8px);
-        }
-
-        .video-wrapper {
-            position: relative;
-            width: 100%;
-            background: #000;
-        }
-
-        /* Video 1: 16:9 Querformat */
-        .ratio-16-9 {
-            aspect-ratio: 16 / 9;
-        }
-
-        /* Video 2 & 3: 9:16 Hochformat */
-        .ratio-9-16 {
-            aspect-ratio: 9 / 16;
-            max-height: 650px; /* Begrenzung für Desktop */
-            margin: 0 auto;
-        }
-
-        iframe {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            border: none;
-        }
-
-        .video-info {
-            padding: 1.5rem;
-            text-align: center;
-        }
-
-        .video-info h3 {
-            margin: 0;
-            font-size: 1.2rem;
-            color: var(--primary);
-        }
-
-        .video-info p {
-            color: #6b7280;
-            margin: 0.5rem 0;
-        }
-
-        .video-link {
-            display: inline-block;
-            margin-top: 10px;
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
     </style>
 </head>
 <body>
 
 <header>
     <h1>Einkaufsverhalten & Globalisierung</h1>
-    <p class="subtitle">Analyse & Videokampagne 2026</p>
+    <p class="subtitle">Umfrageergebnisse vom 04.02.2026 – 10.02.2026</p>
 </header>
 
 <div class="container">
 
     <div class="grid">
-        <div class="card">
-            <h2 style="text-align:center; font-size: 1rem; color: #666;">Teilnehmer</h2>
-            <div class="stat-number">ca. 110</div>
+        <div class="card" style="text-align: center;">
+            <h2>Teilnehmer</h2>
+            <div class="stat-number">ca. 85</div>
+            <p>Datensätze analysiert</p>
         </div>
-        <div class="card">
-            <h2 style="text-align:center; font-size: 1rem; color: #666;">Top Priorität</h2>
+        <div class="card" style="text-align: center;">
+            <h2>Top Priorität</h2>
             <div class="stat-number" style="color: var(--secondary);">Preis & Qualität</div>
+            <p>Entscheidende Kaufkriterien</p>
         </div>
-        <div class="card">
-            <h2 style="text-align:center; font-size: 1rem; color: #666;">Hauptproblem</h2>
+        <div class="card" style="text-align: center;">
+            <h2>Hauptproblem</h2>
             <div class="stat-number" style="color: #ef4444;">Auswahl</div>
+            <p>Online gibt es mehr Vielfalt</p>
         </div>
     </div>
 
@@ -195,52 +129,111 @@
         <div class="card">
             <h2>Wo kaufst du ein?</h2>
             <canvas id="locationChart"></canvas>
+            <p style="font-size: 0.9rem; color: #666; margin-top: 10px;">Dominanz: Fast alle nutzen große Supermärkte oder Discounter.</p>
         </div>
         <div class="card">
             <h2>Was ist dir am wichtigsten?</h2>
             <canvas id="priorityChart"></canvas>
+            <p style="font-size: 0.9rem; color: #666; margin-top: 10px;">Mehrfachnennungen möglich.</p>
         </div>
     </div>
 
     <div class="grid">
         <div class="card">
-            <h2>Was fehlt lokal?</h2>
-            <div class="tag-cloud">
-                <span class="tag highlight">Drogeriemarkt</span>
-                <span class="tag highlight">Kleidung</span>
-                <span class="tag">Öffis</span>
-                <span class="tag">Sushi/Bowls</span>
-                <span class="tag">Sportgeschäfte</span>
-            </div>
-        </div>
-        <div class="card">
-            <h2>Warum Online?</h2>
+            <h2>Warum Online statt Lokal?</h2>
             <canvas id="onlineReasonChart"></canvas>
         </div>
-    </div>
-
-    <div class="card" style="margin-bottom: 3rem;">
-        <h2>Stimmen aus der Umfrage</h2>
-        <div class="quote-box">"Günstigere Preise und mehr Angebote"</div>
-        <div class="quote-box">"Mehr Geschäfte mit mehr Auswahl"</div>
-        <div class="quote-box">"Wenn es mehr Sachen die es global gäbe auch lokal gibt"</div>
-    </div>
-
-    <h2 id="campaign">Unsere Kampagne: Global vs. Lokal</h2>
-    
-    <div class="video-grid">
-        <div class="video-card">
-            <div class="video-wrapper ratio-16-9">
-                <iframe src="https://www.youtube.com/embed/Oti3WusubRw" allowfullscreen></iframe>
+        <div class="card">
+            <h2>Was fehlt in deiner Umgebung?</h2>
+            <div class="tag-cloud">
+                <span class="tag highlight">Drogeriemarkt (Müller/Rossmann)</span>
+                <span class="tag highlight">Kleidung/Mode</span>
+                <span class="tag">Bessere Öffis</span>
+                <span class="tag">Günstigerer Döner</span>
+                <span class="tag">Sushi/Bowls</span>
+                <span class="tag">Buchladen</span>
+                <span class="tag">Späti</span>
+                <span class="tag">Tedi/Action</span>
+                <span class="tag">Sportgeschäfte</span>
             </div>
-            <div class="video-info">
-                <h3>Video 1</h3>
-                <p>1</p>
-                <a href="https://youtube.com/watch?v=Oti3WusubRw" target="_blank" class="video-link">Auf YouTube öffnen →</a>
-            </div>
+            <p style="margin-top: 1rem;">Viele Befragte gaben an, dass Drogerien und Bekleidungsgeschäfte fehlen.</p>
         </div>
+    </div>
 
-        <div class="video-card">
+    <div class="card">
+        <h2>O-Töne: Was würde dich dazu bringen, lokal zu kaufen?</h2>
+        <div class="grid" style="box-shadow: none;">
+            <div class="quote-box">"Wenn Mingjie dabei wär"</div>
+            <div class="quote-box">"Günstigere Preise und mehr Angebote"</div>
+            <div class="quote-box">"Mehr Geschäfte mit mehr Auswahl (vor allem Drogeriemärkte)"</div>
+            <div class="quote-box">"Schöner gestaltet, das Wetter ist besser, alle sind netter..."</div>
+            <div class="quote-box">"Wenn es mehr Sachen die es global gäbe auch lokal gibt"</div>
+            <div class="quote-box">"Bessere Erreichbarkeit, Preissenkungen"</div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    // Daten basierend auf der Analyse der Rohdaten
+    
+    // Chart 1: Wo wird eingekauft?
+    const ctxLoc = document.getElementById('locationChart').getContext('2d');
+    new Chart(ctxLoc, {
+        type: 'doughnut',
+        data: {
+            labels: ['Supermarkt / Discounter', 'Kleiner Laden / Markt', 'Online (als Hauptort)'],
+            datasets: [{
+                data: [88, 10, 2], // Geschätzte Prozentverteilung aus den Daten
+                backgroundColor: ['#3b82f6', '#10b981', '#6366f1'],
+                borderWidth: 0
+            }]
+        },
+        options: { responsive: true, plugins: { legend: { position: 'bottom' } } }
+    });
+
+    // Chart 2: Prioritäten
+    const ctxPrio = document.getElementById('priorityChart').getContext('2d');
+    new Chart(ctxPrio, {
+        type: 'bar',
+        data: {
+            labels: ['Qualität', 'Preis', 'Nachhaltigkeit/Bio', 'Regionalität', 'Schnelligkeit'],
+            datasets: [{
+                label: 'Anzahl Nennungen (geschätzt)',
+                data: [65, 62, 35, 25, 15], // Basierend auf Häufigkeit der Kreuze
+                backgroundColor: '#2563eb',
+                borderRadius: 5
+            }]
+        },
+        options: { 
+            responsive: true, 
+            plugins: { legend: { display: false } },
+            scales: { y: { beginAtZero: true } }
+        }
+    });
+
+    // Chart 3: Grund für Online/Global
+    const ctxOnline = document.getElementById('onlineReasonChart').getContext('2d');
+    new Chart(ctxOnline, {
+        type: 'pie',
+        data: {
+            labels: ['Auswahl ist größer', 'Preis ist günstiger', 'Bequemlichkeit', 'Anderes'],
+            datasets: [{
+                data: [60, 30, 5, 5], // Analyse der Spalte "Warum entscheidest du dich..."
+                backgroundColor: ['#8b5cf6', '#ec4899', '#f59e0b', '#9ca3af'],
+                borderWidth: 0
+            }]
+        },
+        options: { responsive: true, plugins: { legend: { position: 'bottom' } } }
+    });
+</script>
+
+<div class="container">
+    <div class="card">
+        <h2>Unsere Kampagne: Global vs. Lokal</h2>
+        <p>Basierend auf euren Antworten haben wir diese Shorts produziert:</p>
+        
+   <div class="video-card">
             <div class="video-wrapper ratio-9-16">
                 <iframe src="https://www.youtube.com/embed/QhRhLwbZlF8" allowfullscreen></iframe>
             </div>
@@ -265,52 +258,6 @@
 
 </div>
 
-<script>
-    // Chart: Wo kaufst du ein?
-    const ctxLoc = document.getElementById('locationChart').getContext('2d');
-    new Chart(ctxLoc, {
-        type: 'doughnut',
-        data: {
-            labels: ['Supermarkt', 'Markt', 'Online'],
-            datasets: [{
-                data: [88, 10, 2],
-                backgroundColor: ['#3b82f6', '#10b981', '#6366f1'],
-                borderWidth: 0
-            }]
-        },
-        options: { responsive: true, plugins: { legend: { position: 'bottom' } } }
-    });
-
-    // Chart: Prioritäten
-    const ctxPrio = document.getElementById('priorityChart').getContext('2d');
-    new Chart(ctxPrio, {
-        type: 'bar',
-        data: {
-            labels: ['Qualität', 'Preis', 'Bio', 'Regionalität'],
-            datasets: [{
-                data: [65, 62, 35, 25],
-                backgroundColor: '#2563eb',
-                borderRadius: 5
-            }]
-        },
-        options: { responsive: true, plugins: { legend: { display: false } } }
-    });
-
-    // Chart: Online Gründe
-    const ctxOnline = document.getElementById('onlineReasonChart').getContext('2d');
-    new Chart(ctxOnline, {
-        type: 'pie',
-        data: {
-            labels: ['Auswahl', 'Preis', 'Bequemlichkeit'],
-            datasets: [{
-                data: [60, 30, 10],
-                backgroundColor: ['#8b5cf6', '#ec4899', '#f59e0b'],
-                borderWidth: 0
-            }]
-        },
-        options: { responsive: true, plugins: { legend: { position: 'bottom' } } }
-    });
-</script>
 
 </body>
 </html>
